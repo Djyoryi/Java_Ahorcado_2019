@@ -12,12 +12,22 @@ import javax.swing.JButton;
  * @author fecq8
  */
 public class VentanaAhorcado extends javax.swing.JFrame {
-
+    
+    String palabraOculta= "CETYS";
+    int numeroDeFallos = 0;
+    
+    
     /**
      * Creates new form VentanaAhorcado
      */
     public VentanaAhorcado() {
         initComponents();
+        //inicializo el display del juego para que tenga tantos guiones bajos y espacios como la palabra oculta
+        String aux = "";
+        for (int i=0; i<palabraOculta.length(); i++){
+            aux = aux + "_ ";
+        }
+        display.setText(aux);
     }
 
     
@@ -28,6 +38,19 @@ public class VentanaAhorcado extends javax.swing.JFrame {
     
     
      private void chequeaLetra(String letra){
+         //leo lo que haya en la pantalla y lo guardo en un string
+     String palabraConGuiones = display.getText();
+        //comparo la letra que ha sido pulsada con ls letras de la palabra oculta
+        
+        for (int i=0; i<palabraOculta.length(); i++){
+            if (palabraOculta.charAt(i) == letra.charAt(0)){
+                palabraConGuiones = palabraConGuiones.substring(0, 2*i) + letra
+                        + palabraConGuiones.substring(2*i+1);
+            }
+        
+        }
+        //actualizo el display para que me enseñe las palabra acertadas
+        display.setText(palabraConGuiones);
      
      }
     
